@@ -1,0 +1,23 @@
+name: WUB Varsity Bot Run
+on:
+  schedule:
+    - cron: '*/30 * * * *' # প্রতি ৩০ মিনিট পরপর এটি নিজে থেকেই চলবে
+  workflow_dispatch: # যাতে আপনি চাইলে ম্যানুয়ালি রান করতে পারেন
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: pip install requests
+      - name: Run Bot
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          RSS_URL: ${{ secrets.RSS_URL }}
+        run: python bot.py
