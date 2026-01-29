@@ -19,9 +19,9 @@ def check_and_notify():
             msg = f"নতুন আপডেট এসেছে!\n\nশিরোনাম: {title}\nলিঙ্ক: {link}"
             url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={CHAT_ID}&text={msg}"
             requests.get(url)
-            print("মেসেজ সফলভাবে পাঠানো হয়েছে!")
+            print("Message sent successfully!")
     except Exception as e:
-        print(f"ভুল হয়েছে: {e}")
+        print(f"Error occurred: {e}")
 
 if _name_ == "_main_":
     check_and_notify()
